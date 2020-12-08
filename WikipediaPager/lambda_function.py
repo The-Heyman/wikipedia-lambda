@@ -11,22 +11,17 @@ def lambda_handler(event, context):
         :return: a response that contains the first sentence of a wikipedia page,
             the response is JSON formatted.'''
     
-    ## TO DO: Check that the request has some input body and save it
     if 'body' in event:
         
         event = json.loads(event["body"])
     
-    ## TO DO: Get the wikipedia "entity" from the body of the request
     entity = event["entity"]
-    res = wikipedia.summary(entity, sentences=2) # first sentence, result
+    res = wikipedia.summary(entity, sentences=2) # first 2 sentences, result
 
-    # print statements
     print(f"context: {context}, event: {event}")
     print(f"Response from wikipedia API: {res}")
     
-    ## TO DO: Format the response as JSON and return the result
     response = {
-        ## your code here
         "statusCode": "200",
         "headers": {"content-type": "application/json"},
         "body": json.dumps({"message": res})
